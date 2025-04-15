@@ -190,6 +190,12 @@ void LoopClosureAssistant::publishGraph()
       m.id = vertex.first;
       m.pose.position.x = pose.GetX();
       m.pose.position.y = pose.GetY();
+      tf2::Quaternion q_;
+      q_.setRPY(0., 0., pose.GetHeading());
+      m.pose.orientation.x = q_.x();
+      m.pose.orientation.y = q_.y();
+      m.pose.orientation.z = q_.z();
+      m.pose.orientation.w = q_.w();
 
       if (interactive_mode && enable_interactive_mode_) {
         visualization_msgs::msg::InteractiveMarker int_marker =
